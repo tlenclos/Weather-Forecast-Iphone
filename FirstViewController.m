@@ -18,6 +18,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+    
+    // Assume you have a 'date'
+    NSCalendar *gregorianCal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *dataComps = [gregorianCal components: (NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                                  fromDate: [NSDate date]];
+    
+    self.time.text = [NSString stringWithFormat:@"%d:%@", [dataComps hour], [NSString stringWithFormat:@"%02d", [dataComps minute]]];
 }
 
 - (void)didReceiveMemoryWarning
