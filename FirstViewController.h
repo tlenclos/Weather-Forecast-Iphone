@@ -11,5 +11,6 @@
 @interface FirstViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *date;
 
 @end
