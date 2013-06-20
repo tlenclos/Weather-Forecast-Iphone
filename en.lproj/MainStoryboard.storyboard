@@ -54,6 +54,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="7"/>
                     <connections>
                         <outlet property="date" destination="dmM-7P-Ih6" id="fAr-rX-Vva"/>
+                        <outlet property="place" destination="B6h-qF-pqP" id="jYa-h2-Fdb"/>
                         <outlet property="time" destination="QDT-dr-AUo" id="PDM-kN-bbF"/>
                     </connections>
                 </viewController>

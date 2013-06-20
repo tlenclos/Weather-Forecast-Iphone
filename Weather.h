@@ -9,12 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-#define kAPIAddress                     @"http://api.openweathermap.org/data/2.1/find/"
+#define kAPIAddress @"http://api.openweathermap.org/data/2.1/find/"
 
-@interface Weather : NSObject<NSURLConnectionDelegate>
-{
-    NSMutableData *_responseData;
-}
+@interface Weather : NSObject
 
 @property NSString* place;
 @property float temperature;

@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "Weather.h"
 
 @interface FirstViewController ()
 
@@ -23,7 +22,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Get current location
     [self getlocation];
+    
+    // Init weather model
+    _weather = [Weather alloc];
     
 	// Background color
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
@@ -76,15 +80,19 @@
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
-        NSLog(@"%@", [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude]);
-        NSLog(@"%@", [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude]);
-        
         // Stop Location Manager
         [locationManager stopUpdatingLocation];
         
         // Update meteo data
-        Weather *weather = [Weather alloc];
-        [weather getTodayWeatherForLocation:currentLocation];
+        dispatch_queue_t myQueue = dispatch_queue_create("Get meteo",NULL);
+        dispatch_async(myQueue, ^{
+            [_weather getTodayWeatherForLocation:currentLocation];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                _place.text = [_weather place];
+            });
+        });
     }
 }
 
