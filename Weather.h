@@ -10,7 +10,10 @@
 
 #define kAPIAddress                     @"http://api.openweathermap.org/data/2.1/find/"
 
-@interface Weather : NSObject
+@interface Weather : NSObject<NSURLConnectionDelegate>
+{
+    NSMutableData *_responseData;
+}
 
 @property float temperature;
 @property float humidity;
