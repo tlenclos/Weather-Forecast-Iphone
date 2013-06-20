@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "Weather.h"
 
 @interface FirstViewController ()
 
@@ -72,6 +73,10 @@
         
         // Stop Location Manager
         [locationManager stopUpdatingLocation];
+        
+        // Update meteo data
+        Weather *weather = [Weather alloc];
+        [weather getTodayWeatherForLocation:currentLocation];
     }
 }
 

@@ -20,10 +20,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-    
-    Weather *weatherHelper = [Weather alloc];
-    [weatherHelper getTodayWeather];
-    NSLog(@"Humidity = %f", [weatherHelper humidity]);
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 #define kAPIAddress                     @"http://api.openweathermap.org/data/2.1/find/"
 
@@ -21,6 +22,6 @@
 @property int pressure;
 
 // Retourne un jsonArray de la météo d'aujourd'hui
-- (Boolean) getTodayWeather;
+- (Boolean) getTodayWeatherForLocation:(CLLocation*)location;
 
 @end

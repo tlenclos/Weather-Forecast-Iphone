@@ -37,12 +37,12 @@
     return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:url] options:NSJSONReadingAllowFragments error:nil];
 }
 
-- (Boolean) getTodayWeather
+- (Boolean) getTodayWeatherForLocation:(CLLocation*)location
 {
+    // Build query
     NSString * query = @"city?";
-    // Default Paris
-    query = [query stringByAppendingFormat:@"&lat=%f", 48.853409];
-    query = [query stringByAppendingFormat:@"&lon=%f", 2.3488];
+    query = [query stringByAppendingFormat:@"&lat=%f", location.coordinate.latitude];
+    query = [query stringByAppendingFormat:@"&lon=%f", location.coordinate.longitude];
     query = [query stringByAppendingFormat:@"&cnt=%d", 1];
     
     // Create request, url connection and fire request
@@ -90,7 +90,7 @@
         windSpeed = [[[[jsonResponse objectAtIndex:0] objectForKey:@"wind"] objectForKey:@"speed"] floatValue];
         pressure = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"pressure"] intValue];
         
-        // Call to update view
+        // TODO : Call to update view
     }
 }
 
