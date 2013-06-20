@@ -10,6 +10,7 @@
 
 @implementation Weather
 
+@synthesize place;
 @synthesize temperature;
 @synthesize humidity;
 @synthesize windSpeed;
@@ -20,6 +21,7 @@
     self = [super init];
     
     if (self) {
+        place = @"";
         temperature = 0.0;
         humidity = 0.0;
         windSpeed = 0.0;
@@ -85,6 +87,7 @@
     } else {
         NSLog(@"JSON: %@", [jsonResponse objectAtIndex:0]);
         
+        place = [[[jsonResponse objectAtIndex:0] objectForKey:@"name"] stringValue];
         temperature = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"temp"] floatValue];
         humidity = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"humidity"] floatValue];
         windSpeed = [[[[jsonResponse objectAtIndex:0] objectForKey:@"wind"] objectForKey:@"speed"] floatValue];

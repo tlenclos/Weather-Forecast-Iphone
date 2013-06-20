@@ -16,6 +16,7 @@
     NSMutableData *_responseData;
 }
 
+@property NSString* place;
 @property float temperature;
 @property float humidity;
 @property float windSpeed;
