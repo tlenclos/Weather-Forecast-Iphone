@@ -43,6 +43,14 @@
     self.time.text = [NSString stringWithFormat:@"%d:%@", [dataComps hour], [NSString stringWithFormat:@"%02d", [dataComps minute]]];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Location Methods
+
 - (void)getlocation {
     // Get current location
 	locationManager = [[CLLocationManager alloc] init];
@@ -78,12 +86,6 @@
         Weather *weather = [Weather alloc];
         [weather getTodayWeatherForLocation:currentLocation];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
