@@ -43,8 +43,8 @@
     NSDateComponents *dataComps = [gregorianCal components: (NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate: date];
     
     // Views
-    self.date.text = [dateFormatter stringFromDate:date];
-    self.time.text = [NSString stringWithFormat:@"%d:%@", [dataComps hour], [NSString stringWithFormat:@"%02d", [dataComps minute]]];
+    self.dateLabel.text = [dateFormatter stringFromDate:date];
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%@", [dataComps hour], [NSString stringWithFormat:@"%02d", [dataComps minute]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,7 +90,10 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the UI
-                _place.text = [_weather place];
+                _placeLabel.text = [_weather place];
+                _speedLabel.text = [NSString stringWithFormat:@"%.02fkm/h", [_weather windSpeed]];
+                _humidityLabel.text = [NSString stringWithFormat:@"%.02f%%", [_weather humidity]];
+                _temperatureLabel.text = [NSString stringWithFormat:@"%.02fF°", [_weather temperature]];
             });
         });
     }
