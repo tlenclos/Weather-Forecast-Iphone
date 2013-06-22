@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-
-#define kAPIAddress @"http://api.openweathermap.org/data/2.1/find/"
+#import "Const.h"
 
 @interface Weather : NSObject
 
@@ -18,8 +17,8 @@
 @property float humidity;
 @property float windSpeed;
 @property int pressure;
+@property NSString* iconName;
 
-// Retourne un jsonArray de la météo d'aujourd'hui
 - (Boolean) getTodayWeatherForLocation:(CLLocation*)location;
 
 @end

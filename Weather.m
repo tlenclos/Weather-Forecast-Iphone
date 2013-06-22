@@ -15,6 +15,7 @@
 @synthesize humidity;
 @synthesize windSpeed;
 @synthesize pressure;
+@synthesize iconName;
 
 - (id)init
 {
@@ -26,6 +27,7 @@
         humidity = 0.0;
         windSpeed = 0.0;
         pressure = 0;
+        iconName = @"";
     }
     
     return self;
@@ -33,7 +35,7 @@
 
 + (NSDictionary *) apiQuery:(NSString *)query
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", kAPIAddress,query];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", WS_URL, query];
     NSURL * url = [NSURL URLWithString:urlString];
     
     return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:url] options:NSJSONReadingAllowFragments error:nil];
@@ -59,6 +61,7 @@
         humidity = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"humidity"] floatValue];
         windSpeed = [[[[jsonResponse objectAtIndex:0] objectForKey:@"wind"] objectForKey:@"speed"] floatValue];
         pressure = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"pressure"] intValue];
+        iconName = [[[[jsonResponse objectAtIndex:0] objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"icon"];
     }
     
     return true;
