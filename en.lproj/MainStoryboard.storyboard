@@ -116,7 +116,7 @@
                             <constraint firstItem="3ER-jL-EIS" firstAttribute="trailing" secondItem="vU3-aT-SU0" secondAttribute="trailing" type="default" id="uzk-oB-jX4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="first.png" id="7"/>
                     <connections>
                         <outlet property="dateLabel" destination="dmM-7P-Ih6" id="SKY-xW-pj7"/>
                         <outlet property="humidityLabel" destination="rAR-uy-NIc" id="OwT-ul-gEe"/>
@@ -165,7 +165,7 @@
                             <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tvI-WK-JcQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Health" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Health" image="second.png" id="6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,8 +192,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="16" height="16"/>
-        <image name="second" width="16" height="16"/>
+        <image name="first.png" width="30" height="30"/>
+        <image name="second.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="FirstViewController" superclassName="UIViewController">
