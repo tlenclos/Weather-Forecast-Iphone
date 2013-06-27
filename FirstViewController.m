@@ -68,6 +68,7 @@
 // Failed to get current location
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
+    [self.activityIndicator stopAnimating];
     UIAlertView *errorAlert = [[UIAlertView alloc]
 							   initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     // Call alert
@@ -93,6 +94,8 @@
             _weather = [ws getTodayWeatherForLocation:currentLocation];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self.activityIndicator stopAnimating];
+                
                 // Update the UI
                 _placeLabel.text = [_weather place];
                 _speedLabel.text = [NSString stringWithFormat:@"%.02fkm/h", [_weather windSpeed]];
