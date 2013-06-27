@@ -28,19 +28,27 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    // Get week meteo data
-    dispatch_queue_t myQueue = dispatch_queue_create("Get week meteo",NULL);
-    dispatch_async(myQueue, ^{
-        
-        User* user = [User sharedInstance];
-        WeatherWebservice* ws = [[WeatherWebservice alloc] init];
-        _weatherWeek = [ws getWeekWeatherForLocation:[user location]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Update the UI
-            [self.tableView reloadData];
+    Reachability* reach = [Reachability reachabilityForInternetConnection];
+    if ([reach isReachable]) {
+        // Get week meteo data
+        dispatch_queue_t myQueue = dispatch_queue_create("Get week meteo",NULL);
+        dispatch_async(myQueue, ^{
+            
+            User* user = [User sharedInstance];
+            WeatherWebservice* ws = [[WeatherWebservice alloc] init];
+            _weatherWeek = [ws getWeekWeatherForLocation:[user location]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                [self.tableView reloadData];
+            });
         });
-    });
+    } else {
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"No internet connection" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        // Call alert
+        [errorAlert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning

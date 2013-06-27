@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Const.h"
 #import "Weather.h"
+#import "Reachability.h"
 
 @interface WeatherWebservice : NSObject
 

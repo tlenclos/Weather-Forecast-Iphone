@@ -14,8 +14,9 @@
 + (NSDictionary *) apiQuery:(NSString *)query
 {
     NSURL * url = [NSURL URLWithString:query];
+    NSData* data = [NSData dataWithContentsOfURL:url];
     
-    return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:url] options:NSJSONReadingAllowFragments error:nil];
+    return  data ? [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil] : nil;
 }
 
 - (Weather*) getTodayWeatherForLocation:(CLLocation*)location

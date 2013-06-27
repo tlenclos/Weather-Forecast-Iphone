@@ -86,25 +86,34 @@
         // Stop Location Manager
         [locationManager stopUpdatingLocation];
         
-        // Update meteo data
-        dispatch_queue_t myQueue = dispatch_queue_create("Get meteo",NULL);
-        dispatch_async(myQueue, ^{
-            
-            WeatherWebservice* ws = [[WeatherWebservice alloc] init];
-            _weather = [ws getTodayWeatherForLocation:currentLocation];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.activityIndicator stopAnimating];
+        Reachability* reach = [Reachability reachabilityForInternetConnection];
+        if ([reach isReachable]) {
+            // Update meteo data
+            dispatch_queue_t myQueue = dispatch_queue_create("Get meteo",NULL);
+            dispatch_async(myQueue, ^{
                 
-                // Update the UI
-                _placeLabel.text = [_weather place];
-                _speedLabel.text = [NSString stringWithFormat:@"%.02fkm/h", [_weather windSpeed]];
-                _humidityLabel.text = [NSString stringWithFormat:@"%.02f%%", [_weather humidity]];
-                _temperatureLabel.text = [NSString stringWithFormat:@"%.02fF°", [_weather temperature]];
+                WeatherWebservice* ws = [[WeatherWebservice alloc] init];
+                _weather = [ws getTodayWeatherForLocation:currentLocation];
                 
-                self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [_weather iconName]]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.activityIndicator stopAnimating];
+                    
+                    // Update the UI
+                    _placeLabel.text = [_weather place];
+                    _speedLabel.text = [NSString stringWithFormat:@"%.02fkm/h", [_weather windSpeed]];
+                    _humidityLabel.text = [NSString stringWithFormat:@"%.02f%%", [_weather humidity]];
+                    _temperatureLabel.text = [NSString stringWithFormat:@"%.02fF°", [_weather temperature]];
+                    
+                    self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [_weather iconName]]];
+                });
             });
-        });
+        } else {
+            [self.activityIndicator stopAnimating];
+            UIAlertView *errorAlert = [[UIAlertView alloc]
+                                       initWithTitle:@"Error" message:@"No internet connection" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            // Call alert
+            [errorAlert show];
+        }
     }
 }
 
