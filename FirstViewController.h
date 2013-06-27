@@ -7,7 +7,9 @@
 //
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
+#import "WeatherWebservice.h"
 #import "Weather.h"
+#import "User.h"
 
 @interface FirstViewController : UIViewController <CLLocationManagerDelegate> {
         CLLocationManager *locationManager;

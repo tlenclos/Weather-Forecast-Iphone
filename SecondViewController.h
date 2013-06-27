@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController  : UITableViewController
+
+@property (strong, nonatomic) IBOutlet NSMutableArray* weatherWeek;
 
 @end

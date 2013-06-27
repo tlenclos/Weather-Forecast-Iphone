@@ -10,6 +10,7 @@
 #define Weather_forecast_const_h
 
 #define WS_URL    @"http://api.openweathermap.org/data/2.1/find/"
+#define WS_URL_FORECAST    @"http://api.openweathermap.org/data/2.5/forecast/"
 
 #endif
 

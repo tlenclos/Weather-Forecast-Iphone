@@ -78,6 +78,8 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
+    User* user = [User sharedInstance];
+    [user setLocation:newLocation];
     
     if (currentLocation != nil) {
         // Stop Location Manager
@@ -86,7 +88,9 @@
         // Update meteo data
         dispatch_queue_t myQueue = dispatch_queue_create("Get meteo",NULL);
         dispatch_async(myQueue, ^{
-            [_weather getTodayWeatherForLocation:currentLocation];
+            
+            WeatherWebservice* ws = [[WeatherWebservice alloc] init];
+            _weather = [ws getTodayWeatherForLocation:currentLocation];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the UI
@@ -95,8 +99,7 @@
                 _humidityLabel.text = [NSString stringWithFormat:@"%.02f%%", [_weather humidity]];
                 _temperatureLabel.text = [NSString stringWithFormat:@"%.02fF°", [_weather temperature]];
                 
-                UIImage* weatherImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [_weather iconName]]];
-                self.weatherIcon.image = weatherImage;
+                self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [_weather iconName]]];
             });
         });
     }

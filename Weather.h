@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-#import "Const.h"
 
 @interface Weather : NSObject
 
@@ -18,7 +16,6 @@
 @property float windSpeed;
 @property int pressure;
 @property NSString* iconName;
-
-- (Boolean) getTodayWeatherForLocation:(CLLocation*)location;
+@property NSDate* day;
 
 @end
