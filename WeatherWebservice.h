@@ -16,5 +16,6 @@
 
 - (Weather*) getTodayWeatherForLocation:(CLLocation*)location;
 - (NSMutableArray*) getWeekWeatherForLocation:(CLLocation*)location;
+- (float) kelvinToCelsius:(float) kelvin;
 
 @end

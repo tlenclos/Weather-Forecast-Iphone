@@ -29,6 +29,7 @@
     query = [query stringByAppendingFormat:@"&lat=%f", location.coordinate.latitude];
     query = [query stringByAppendingFormat:@"&lon=%f", location.coordinate.longitude];
     query = [query stringByAppendingFormat:@"&cnt=%d", 1];
+    query = [query stringByAppendingFormat:@"&units=%s", "metric"];
     
     NSArray *jsonResponse = [[[WeatherWebservice apiQuery:query] objectForKey:@"list"] allObjects];
     
@@ -36,7 +37,7 @@
         NSLog(@"Error parsing JSON");
     } else {
         weather.place = [[jsonResponse objectAtIndex:0] objectForKey:@"name"];
-        weather.temperature = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"temp"] floatValue];
+        weather.temperature = [self kelvinToCelsius:[[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"temp"] floatValue]];
         weather.humidity = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"humidity"] floatValue];
         weather.windSpeed = [[[[jsonResponse objectAtIndex:0] objectForKey:@"wind"] objectForKey:@"speed"] floatValue];
         weather.pressure = [[[[jsonResponse objectAtIndex:0] objectForKey:@"main"] objectForKey:@"pressure"] intValue];
@@ -63,9 +64,8 @@
     } else {
         int index = 0;
         for(NSDictionary * dic in jsonResponse) {
-            NSLog(@"JSON: %@", [jsonResponse objectAtIndex:0]);
             Weather* weather = [[Weather alloc] init];
-            weather.temperature = [[[jsonResponse objectAtIndex:index] objectForKey:@"deg"] floatValue];
+            weather.temperature = [self kelvinToCelsius:[[[[jsonResponse objectAtIndex:index] objectForKey:@"temp"] objectForKey:@"day"] floatValue]];
             weather.humidity = [[[jsonResponse objectAtIndex:index] objectForKey:@"humidity"] floatValue];
             weather.pressure = [[[jsonResponse objectAtIndex:index] objectForKey:@"pressure"] intValue];
             weather.iconName = [[[[jsonResponse objectAtIndex:index] objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"icon"];
@@ -77,5 +77,9 @@
     return weekWeather;
 }
 
+- (float) kelvinToCelsius:(float) kelvin
+{
+    return kelvin - 273.15;
+}
 
 @end

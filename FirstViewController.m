@@ -102,7 +102,7 @@
                     _placeLabel.text = [_weather place];
                     _speedLabel.text = [NSString stringWithFormat:@"%.02fkm/h", [_weather windSpeed]];
                     _humidityLabel.text = [NSString stringWithFormat:@"%.02f%%", [_weather humidity]];
-                    _temperatureLabel.text = [NSString stringWithFormat:@"%.02fF°", [_weather temperature]];
+                    _temperatureLabel.text = [NSString stringWithFormat:@"%.02f°C", [_weather temperature]];
                     
                     self.weatherIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [_weather iconName]]];
                 });

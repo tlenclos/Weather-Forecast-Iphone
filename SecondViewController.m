@@ -89,7 +89,7 @@
     cell.textLabel.text = [dateFormatter stringFromDate:weather.day];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.02fF° / %d Pa", weather.temperature, weather.pressure];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.02f°C / %d Pa", weather.temperature, weather.pressure];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     
