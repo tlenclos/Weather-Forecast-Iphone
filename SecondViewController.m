@@ -24,6 +24,14 @@
     
     self.tableView.separatorColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.];;
     self.tableView.backgroundColor = [UIColor colorWithRed:47/255. green:140/255. blue:205/255. alpha:1.];
+    
+    // Activity indicator
+    self.activityIndicator = [[UIActivityIndicatorView alloc]
+                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityIndicator.center = CGPointMake(160, 240);
+    self.activityIndicator.hidesWhenStopped = YES;
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -40,10 +48,12 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the UI
+                [self.activityIndicator stopAnimating];
                 [self.tableView reloadData];
             });
         });
     } else {
+        [self.activityIndicator stopAnimating];
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error" message:@"No internet connection" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         // Call alert

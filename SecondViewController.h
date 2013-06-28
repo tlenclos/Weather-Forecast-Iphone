@@ -11,5 +11,7 @@
 @interface SecondViewController  : UITableViewController
 
 @property (strong, nonatomic) IBOutlet NSMutableArray* weatherWeek;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 
 @end
