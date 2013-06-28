@@ -40,8 +40,8 @@
                             <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" id="vU3-aT-SU0">
                                 <rect key="frame" x="7" y="86" width="306" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rC4-33-3Go">
-                                        <rect key="frame" x="7" y="6" width="50" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Wind" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rC4-33-3Go">
+                                        <rect key="frame" x="7" y="6" width="39" height="21"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -155,13 +155,9 @@
                 <relationship kind="outlet" name="weatherIcon" candidateClass="UIImageView"/>
             </relationships>
         </class>
-        <class className="NSMutableArray" superclassName="NSArray">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSMutableArray.h"/>
-        </class>
         <class className="SecondViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="weatherWeek" candidateClass="NSMutableArray"/>
             </relationships>
         </class>
